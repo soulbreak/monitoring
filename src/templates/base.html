@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="s">
+    <meta name="author" content="b">
+    <title>RTM</title>
+    <link href="static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body ng-app="myApp">
+    <nav class="navbar avbar-dark bg-dark navbar-default  navbar-fixed-top">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+            <div ng-controller="MenuCtrl">
+                <ul>
+                    <li ng-repeat="link in links" menu-Directive></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row" ng-controller="ApplicationCtrl">
+                <ul>
+                    <li ng-repeat="application in applications" >
+                        <configuration-Directive></configuration-Directive>
+                        <button ng-click="select_application(application)">Details</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div ng-controller="SelectedCtrl">
+                Selected :
+                <ul>
+                    <li ng-repeat="select in selected">{{ select }}</li>
+                </ul>
+            <div>
+       </div>
+
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>Contact : xXx</p>
+      </footer>
+    </div>
+
+    <script src="static/lib/jquery/jquery.min.js">></script>
+    <script src="static/lib/popper/popper.js"></script>
+    <script src="static/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="static/lib/angular/angular.js"></script>
+    <script src="static/js/controller.js"></script>
+  </body>
+</html>
