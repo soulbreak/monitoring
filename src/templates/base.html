@@ -33,26 +33,9 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="row" ng-controller="ApplicationCtrl">
-                <ul>
-                    <li ng-repeat="application in applications" >
-                        <configuration-Directive></configuration-Directive>
-                        <button ng-click="select_application(application)">Details</button>
-                    </li>
-                </ul>
-            </div>
-
-            <div ng-controller="SelectedCtrl">
-                Selected :
-                <ul>
-                    <li ng-repeat="select in selected">{{ select }}</li>
-                </ul>
-            <div>
-       </div>
-
+          <div ng-view></div>
+        </div>
       </div>
-
-      <hr>
 
       <footer>
         <p>Contact : xXx</p>
@@ -63,6 +46,8 @@
     <script src="static/lib/popper/popper.js"></script>
     <script src="static/lib/bootstrap/bootstrap.min.js"></script>
     <script src="static/lib/angular/angular.js"></script>
+    <script src="static/lib/angular/angular-route.js"></script>
+    <script src="static/js/routage.js"></script>
     <script src="static/js/controller.js"></script>
   </body>
 </html>

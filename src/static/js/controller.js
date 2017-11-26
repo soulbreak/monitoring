@@ -1,25 +1,43 @@
-var app = angular.module("myApp", ['ApplicationModule','MenuModule']);
+var app = angular.module("myApp", ['routageModule','ApiModule','ApplicationModule','MenuModule']);
 
 
+var ApiModule = angular.module('ApiModule',[])
+    .service('dataservice', function($http) {
+    this.getData = function() {
+        return $http({
+            method: 'GET',
+            url: '/api/configuration'
+         });
+     }
+});
 
-var MenuModule = angular.module('MenuModule', []);
-
-
-MenuModule.controller('MenuCtrl', ['$scope', function ($scope) {
+var MenuModule = angular.module('MenuModule', [])
+    .controller('MenuCtrl', ['$scope', function ($scope) {
       $scope.links = [
-          { 'name' : 'Configuration'},
-          { 'name' : 'Statuses'}
-      ]
-}]);
-
+            { 'name' : 'configuration'},
+            { 'name' : 'Statuses'},
+            { 'name' : 'application'},
+      ]}])
+;
 
 MenuModule.directive('menuDirective',function(){
     return {
-        template : '{{link.name}}'
+        template : ' <a href="#!{{link.name}}">{{link.name}}</a>'
     }
 })
 
-var ApplicationModule = angular.module('ApplicationModule', [])
+var ApplicationModule = angular.module('ApplicationModule', ['ApiModule'])
+    .controller("ConfigurationCtrl",
+        [ '$scope',  'dataservice', function ($scope, dataservice) {
+
+        $scope.data = null;
+        $scope.get_configuration = function () {
+            dataservice.getData().then(function(dataResponse) {
+                $scope.data = dataResponse.data;
+            });
+        };
+
+    }])
     .controller("ApplicationCtrl", [ '$scope', 'ApplicationService', function ($scope, ApplicationService) {
         $scope.applications = [{
                 'name' : 'applicationA',
@@ -30,9 +48,10 @@ var ApplicationModule = angular.module('ApplicationModule', [])
                 'status': 'down'
             }
         ]
-    $scope.select_application = function (application) {
-        ApplicationService.select_application(application);
-    };
+
+        $scope.select_application = function (application) {
+            ApplicationService.select_application(application);
+        };
 
     }])
     .controller("SelectedCtrl", [ '$scope', 'ApplicationService', function ($scope, ApplicationService) {
@@ -44,15 +63,14 @@ var ApplicationModule = angular.module('ApplicationModule', [])
         this.select_application = function (application) {
             console.log('push');
             this.selected.push(application);
+        }}])
+    .directive("configurationDirective", function () {
+        return {
+            template: "{{ application.name }} {{ application.status }}"
         };
-}]);
+    })
+;
 
 
 
-
-ApplicationModule.directive("configurationDirective", function () {
-    return {
-        template: "{{ application.name }} {{ application.status }}"
-    };
-})
 

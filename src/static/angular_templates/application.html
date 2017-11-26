@@ -1,0 +1,15 @@
+<div class="row" ng-controller="ApplicationCtrl">
+    <ul>
+        <li ng-repeat="application in applications" >
+            <configuration-Directive></configuration-Directive>
+            <button ng-click="select_application(application)">Details</button>
+        </li>
+    </ul>
+</div>
+
+<div ng-controller="SelectedCtrl">
+    Selected :
+    <ul>
+        <li ng-repeat="select in selected track by $index">{{ select }}</li>
+    </ul>
+<div>
