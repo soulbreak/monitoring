@@ -20,7 +20,7 @@ app.config['DEBUG'] = True
 def hello_world():
     return render_template('base.html')
 
-@app.route('/api/configuration')
+@app.route('/api/applications')
 def get_configuration():
     return json.dumps([{
         'application' : 'applicationA',

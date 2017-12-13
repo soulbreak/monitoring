@@ -9,7 +9,7 @@
     <link href="static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
   </head>
 
-  <body ng-app="myApp">
+  <body>
     <nav class="navbar avbar-dark bg-dark navbar-default  navbar-fixed-top">
       <a class="navbar-brand" href="#">Navbar</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,14 +26,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-4">
-            <div ng-controller="MenuCtrl">
-                <ul>
-                    <li ng-repeat="link in links" menu-Directive></li>
-                </ul>
-            </div>
+            <div id="menu"></div>
         </div>
         <div class="col-md-8">
-          <div ng-view></div>
+          <div id="applications">
+            {{ get_data()  }}
+          </div>
         </div>
       </div>
 
@@ -45,9 +43,13 @@
     <script src="static/lib/jquery/jquery.min.js">></script>
     <script src="static/lib/popper/popper.js"></script>
     <script src="static/lib/bootstrap/bootstrap.min.js"></script>
-    <script src="static/lib/angular/angular.js"></script>
+    <script src="static\lib\npm\node_modules\axios\dist\axios.js"></script>
+    <script src="static/lib/vue/vue.js"></script>
+    <!--<script src="static/lib/angular/angular.js"></script>
     <script src="static/lib/angular/angular-route.js"></script>
     <script src="static/js/routage.js"></script>
-    <script src="static/js/controller.js"></script>
+    <script src="static/js/controller.js"></script> -->
+    <script src="static/js/myvue.js"></script>
+
   </body>
 </html>
